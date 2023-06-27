@@ -1,0 +1,101 @@
+#include <stdio.h>
+
+struct Contexto {
+    char Nome[15];
+    char Lore[150];
+};
+
+struct Caracteristicas {
+    int Classe;
+    int Raca;
+};
+
+struct Ficha {
+    struct Contexto contexto;
+    struct Caracteristicas caracteristicas;
+};
+
+void Informacoes(struct Contexto *contexto) {
+    printf("Digite o seu nome: ");
+    scanf("%s", contexto->Nome);
+}
+
+int SelecionarClasse() {
+    printf("Selecione sua classe:\n");
+    printf("1-Anao\n2-Elfo\n3-Halfling\n4-Humano\n5-Dragonato\n6-Gnomo\n7-Meio-Elfo\n8-Tiefling\n");
+
+    int Classe;
+    scanf("%d", &Classe);
+
+    return Classe;
+}
+
+void MostrarFicha(struct Ficha jogador) {
+    printf("Classe: ");
+    switch (jogador.caracteristicas.Classe) {
+        case 1:
+            printf("Anao.\n");
+            break;
+        case 2:
+            printf("Elfo.\n");
+            break;
+        case 3:
+            printf("Halfling.\n");
+            break;
+        case 4:
+            printf("Humano.\n");
+            break;
+        case 5:
+            printf("Dragonato.\n");
+            break;
+        case 6:
+            printf("Gnomo.\n");
+            break;
+        case 7:
+            printf("Meio-Elfo.\n");
+            break;
+        case 8:
+            printf("Tiefling.\n");
+            break;
+        default:
+            printf("Classe invalida.\n");
+            break;
+    }
+}
+
+int main() {
+    printf("Bem-vindo ao D&D.\n");
+
+    struct Ficha jogador;
+    int opcao;
+
+    printf("0-Sair\n1-Nome e lore\n2-Classe\n3-Raca\n4-Descricao\n5-Equipamentos\n"); 
+
+    do {
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 0:
+                break;
+            case 1:
+                Informacoes(&jogador.contexto);
+                break;
+            case 2:
+                jogador.caracteristicas.Classe = SelecionarClasse();
+                break;
+            case 3:
+                MostrarFicha(jogador);
+                break;
+            case 4:
+                // Implement description functionality
+                break;
+            case 5:
+                // Implement equipment functionality
+                break;
+            default:
+                break;
+        }
+    } while (opcao != 0);
+
+    return 0;
+}
