@@ -1,47 +1,140 @@
-#include <stdio.h>
+// FICHA DE D&D                                 By: "GRUPO INACAT"
 
-aaaaaaa
-struct Contexto             ///dados dos nomes e lore
-{
-    char Nome[15];
-    char Lore[150];
-};
-struct Caracteristicas     ///dados de Classe e raça
-{
-    int Classe;
-    int Raca;
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Personagem{
+    char nome[30];
+    char lore[150];
+    char alinhamento[3];
+    char nomejogador[15];
+    char raca[15];
+    int idade;
 };
 
-struct Ficha               ///struct das struct de contexto e caracteristias
-{
-    struct Contexto contexto;
-    struct Caracteristicas caracteristicas;
+struct Atributos{
+    int forca;
+    int destreza;
+    int constituicao;
+    int inteligencia;
+    int sabedoria;
+    int carisma;
+    int CA;
+};
+
+struct Raca{
+    float deslocamento;
+    int bonus;
+    float tamanho;
+    char idioma[10];
+};
+
+struct Classe{
+    int vida;
+    int riqueza;
+    int atributo_primario;
+};
+
+struct Ficha{
+    struct Personagem personagem;
+    struct Atributos Atributos;
+    struct Raca raca;
+    struct Classe classe;
+};
+
+void Informacoes(struct Ficha.Personagem){
+    printf("Digite seu nome: ");
+    scanf("%s",personagem->nomejogador );
+    printf("Digite o nome do seu personagem: ");
+    scanf("%s", personagem->nome);
+    printf("Escreva a lore do seu personagem (150 caracteres): ");
+    scanf("%s", personagem->lore);
+    printf("Digite a idade do seu personagem: ");
+    scanf("%d", personagem->idade); 
+}
     
-};
-
-Informacoes(struct Contexto *contexto)    ///função para ler nome e lore
-{         
-printf("digite o seu nome\n");
-scanf("%s",&contexto->Nome);
+void SelecionarRaca(int *Raca){   
+    printf("Selecione uma Raca:\n1-Anao\n2-Elfo\n3-Halfling\n4-Humano\n5-Dragonato\n6-Gnomo\n7-Meio-Elfo\n8-Tiefling\n");       
+    scanf("%d", Raca);
+        {
+    /*        
+        case 1:          
+            break;
+        case 2:
+            
+            break;
+        case 3:
+            
+            break;
+        case 4:
+            
+            break;
+        case 5:
+            
+            break;
+        case 6:
+            
+            break;
+        case 7:
+            
+            break;
+        case 8:
+            
+            break;
+        }*/
+                                
 }
 
-
-int SelecionarClasse()                   ///função para ler e modificar a Classe
- {                    
-
-    printf("Selecione sua clase");
-    int Classe;
-    printf("\n1-Anao\n2-Elfo\n3-Halfling\n4-Humano\n5-Dragonato\n6-Gnomo\n7-Meio-Elfo\n8-Tiefling\n");
-
-    scanf("%d", &Classe);
-
-    return Classe;
+void SelecionarClasse(int *Classe){
+    printf("Selecione sua Classe:\n1-Barbaro\n2-BArdo\n3-Bruxo\n4-Clerigo\n5-Druida\n6-Feiticeiro\n7-Guerreiro\n8-Ladino\n9-Mago\n10-Monge\n11-Paladino\n12-Patrulheiro");
+        scanf("%d",Classe);
+        /*switch (Classe)
+        {
+            
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+        case 3:
+            
+            break;
+        case 4:
+            
+            break;
+        case 5:
+            
+            break;
+        case 6:
+            
+            break;
+        case 7:
+            
+            break;
+        case 8:
+            main
+            break;
+        case 9:
+            
+            break;
+        case 10:
+            
+            break;   
+        case 11:
+            
+            break;   
+        case 12:
+            
+            break;               
+        default:
+            break;
+        }*/
 }
 
-void MostrarFicha(struct Ficha jogador)    ///função para mostrar a ficha (codigo temporario)
-{
-    printf("Classe: ");
-    switch (jogador.caracteristicas.Classe) {
+void MostrarFicha(struct Ficha jogador) {
+    printf("Raca: ");
+    switch (jogador.Raca){
         case 1:
             printf("Anao.\n");
             break;
@@ -70,45 +163,34 @@ void MostrarFicha(struct Ficha jogador)    ///função para mostrar a ficha (cod
             printf("Classe invalida.\n");
             break;
     }
-}    
+}
 
-int main() {
-    
-
-    printf("Bem-vindo ao D&D.\n");
-    
-    struct Ficha jogador;
-    
-    int opcao;
-
-    printf("0-Sair\n1-Nome e lore\n2-Classe\n3-Raca\n4-Descricao\n5-Equipamentos");      /// mostrar opções do menu para o jogador: 0-Sair   1-Nome 2-Classe 3-raça  4-descrição  5-Equipamentos*
-do {
-    scanf("%d",&opcao);
-    switch (opcao)
-    {
-    case 0:
-        break;
-    case 1:
-        Informacoes(&jogador.contexto);
-    case 2:
-        jogador.caracteristicas.Classe = SelecionarClasse();
-        break;
-    case 3:
-        MostrarFicha(jogador);
-        break;
-    case 4:
-        break;
-    case 5:
-        break;
-    default:
-        break;
-    }
-    
-
-    
-}while (opcao!=0);
-    
-    
-
-    return 0;
+void main() {
+    printf("Bem-vindo ao DD!\n");                                                                                   //impressão de mensagem inicial;
+    struct Ficha jogador;                                                                                          //declaracao de variavel Ficha;
+    int opcao;                                                                                                      //declaracao de variavel que recebe a escolha do usuario;
+    printf("0 - Sair\n1 - Caracteristicas gerais\n2 - Classe\n3 - Raca\n4 - Descricao\n5 - Equipamentos\n");        //impressao de primeiro menu de escolha
+        scanf("%d", &opcao);
+        switch(opcao){                                                                       //switch para a realizacao da escolha estilo menu;
+            case 0:
+                break;
+            case 1:                                                                           //caso usuario escolha o numero 1;
+                Informacoes(jogador.personagem);                                             //chamado da funcao informacoes, com passagem do endereco de memoria da variavel jogador.contexto;
+                break;
+            case 2:
+                SelecionarClasse();
+                break;
+            case 3:    
+                SelecionarRaca(jogador.Raca);                            //chamado da funcao Raca;
+                MostrarFicha(jogador);                            
+            case 4:
+                break;
+            case 5:              
+            case 6:
+                 MostrarFicha(jogador);
+                break;
+            default:
+                break;
+        }
+    } while (opcao != 0);
 }
